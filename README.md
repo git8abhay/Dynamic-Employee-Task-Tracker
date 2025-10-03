@@ -148,28 +148,6 @@ This release brings powerful productivity features:
 - **Optimistic UI updates** for better UX
 - **Real-time database listeners** for instant sync
 
-### 🔍 Advanced Features
-- **🔍 Smart Search System**:
-  - Real-time search across multiple fields (title, description, assignee, priority)
-  - Case-insensitive matching for better results
-  - Clear button for quick reset
-  - Available in both Admin and Employee dashboards
-- **☑️ Bulk Operations (Admin)**:
-  - Toggle bulk selection mode
-  - Checkbox on each task card
-  - Select/Deselect all functionality
-  - Mass status updates for multiple tasks
-  - Visual feedback with purple borders and glow effects
-  - Selected task counter display
-- **📊 Performance Analytics (Employee)**:
-  - Completion rate percentage calculation
-  - High priority pending task counter
-  - Performance summary card with visual dashboard
-  - Motivational award icons for achievements
-- **Task filtering** by status (New, Active, Completed, Failed)
-- **Sorting capabilities** by date and priority
-- **Context API** for efficient state management
-
 ### 🎨 User Interface
 - **Responsive design** for all screen sizes
 - **Modern UI components** with Tailwind CSS
