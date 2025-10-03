@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   LogOut,
+  LayoutList,
   Plus,
   Filter,
   SortAsc,
@@ -104,13 +105,13 @@ const Dashboard = () => {
        {/* Statistics Section (Glassmorphism Circular Cards) */}
         <div className="flex flex-wrap justify-center gap-6 mt-6 mb-6">
         {[
-        { label: 'Total Tasks', count: stats.total, color: 'cyan', icon: null },
+        { label: 'Total Tasks', count: stats.total, color: 'red', icon: LayoutList },
         { label: 'New Tasks', count: stats.new, color: 'blue', icon: AlertCircle },
         { label: 'Active Tasks', count: stats.active, color: 'yellow', icon: Clock },
         { label: 'Completed Tasks', count: stats.completed, color: 'green', icon: CheckCircle },
         ].map(({ label, count, color, icon: Icon }, idx) => {
         const colorMap = {
-        cyan: 'border-cyan-400 shadow-cyan-400/50',
+        red: 'border-red-400 shadow-red-400/50',
         blue: 'border-blue-400 shadow-blue-400/50',
         yellow: 'border-yellow-400 shadow-yellow-400/50',
         green: 'border-green-400 shadow-green-400/50',
@@ -138,11 +139,11 @@ const Dashboard = () => {
             {/* Filter and Sort */}
             <div className="flex flex-wrap gap-4 items-center">
               <div className="flex items-center gap-2">
-                <Filter size={18} className="text-cyan-300" />
+                <Filter size={18} className="text-green-300" />
                 <select
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
-                  className="px-3 py-2 rounded-lg bg-white/10 border border-cyan-400 text-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                  className="px-3 py-2 rounded-lg bg-white/10 border border-cyan-400 text-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 >
                   <option>All</option>
                   <option>New</option>
@@ -152,11 +153,11 @@ const Dashboard = () => {
                 </select>
               </div>
               <div className="flex items-center gap-2">
-                <SortAsc size={18} className="text-cyan-300" />
+                <SortAsc size={18} className="text-yellow-300" />
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="px-3 py-2 rounded-lg bg-white/10 border border-cyan-400 text-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                  className="px-3 py-2 rounded-lg bg-white/10 border border-cyan-400 text-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 >
                   <option value="date">Sort by Date</option>
                   <option value="priority">Sort by Priority</option>

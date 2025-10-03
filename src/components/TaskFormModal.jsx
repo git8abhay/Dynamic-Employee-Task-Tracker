@@ -6,7 +6,7 @@ const TaskFormModal = ({ task, onSave, onClose }) => {
       title: "",
       description: "",
       status: "New",
-      priority: "Medium",
+      priority: "High",
       assignedTo: "",
       dueDate: new Date().toISOString().split("T")[0], // YYYY-MM-DD
     }
