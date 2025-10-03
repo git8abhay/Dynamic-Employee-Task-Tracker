@@ -1,5 +1,3 @@
-// src/api/auth.js
-
 import { 
   signInWithEmailAndPassword, 
   signOut, 
@@ -7,7 +5,7 @@ import {
   createUserWithEmailAndPassword 
 } from 'firebase/auth';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
-import { auth, db } from '../firebase'; // Assuming firebase.js is in src/
+import { auth, db } from '../firebase'; 
 
 /**
  * Logs in an existing user.

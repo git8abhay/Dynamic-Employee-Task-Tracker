@@ -1,5 +1,3 @@
-// src/api/tasks.js
-
 import { 
   collection, 
   addDoc, 
@@ -11,7 +9,7 @@ import {
   orderBy,
   serverTimestamp
 } from 'firebase/firestore';
-import { db } from '../firebase'; // Assuming firebase.js is in src/
+import { db } from '../firebase';
 
 const TASKS_COLLECTION = 'tasks';
 const tasksCollection = collection(db, TASKS_COLLECTION);
