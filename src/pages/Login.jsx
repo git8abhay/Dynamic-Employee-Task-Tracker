@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { AlertCircle } from 'lucide-react';
-import { useAuth } from '../context/AuthContext'; // Use the custom hook
+import { AlertCircle, LogIn } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
   const { login, register } = useAuth();
@@ -10,7 +10,9 @@ const Login = () => {
   const [isRegister, setIsRegister] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     if (!email || !password) {
       setError('Please fill all fields');
       return;
@@ -19,9 +21,10 @@ const Login = () => {
       setError('Password must be at least 6 characters');
       return;
     }
+
     setError('');
     setIsLoading(true);
-    
+
     try {
       if (isRegister) {
         await register(email, password);
@@ -30,8 +33,11 @@ const Login = () => {
       }
     } catch (err) {
       console.error('Auth error:', err);
-      // Detailed error handling
-      if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
+      if (
+        err.code === 'auth/user-not-found' ||
+        err.code === 'auth/wrong-password' ||
+        err.code === 'auth/invalid-credential'
+      ) {
         setError('Invalid email or password.');
       } else if (err.code === 'auth/email-already-in-use') {
         setError('Email already registered');
@@ -44,81 +50,79 @@ const Login = () => {
   };
 
   return (
-    // Your existing Login UI JSX
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-          Task Tracker
+    <div className="h-screen w-screen flex items-center justify-center bg-black bg-gradient-to-br from-black via-gray-900 to-black">
+      <div className="w-[90%] max-w-md backdrop-blur-md bg-white/10 border border-cyan-400/40 p-8 rounded-2xl shadow-2xl hover:shadow-cyan-500/40 transition-all duration-500">
+        {/* Title */}
+        <h1 className="text-white text-2xl font-bold text-center mb-6">
+          <LogIn className="inline mr-2" />
+          Dynamic EMS Task Tracker
         </h1>
-        <div className="mb-4 flex gap-2">
-          {/* Login/Register Toggle Buttons */}
+
+        {/* Toggle Buttons */}
+        <div className="flex gap-2 mb-6">
           <button
             onClick={() => { setIsRegister(false); setError(''); }}
-            className={`flex-1 py-2 rounded-lg font-medium transition-colors ${
+            className={`flex-1 py-2 rounded-md font-semibold transition-all duration-300 ${
               !isRegister 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-gray-200 text-gray-700'
+                ? 'bg-cyan-600 text-white shadow-cyan-400/40 hover:bg-cyan-500 hover:scale-105' 
+                : 'bg-white/10 text-cyan-200 border border-cyan-400 hover:bg-cyan-500/20'
             }`}
           >
             Login
           </button>
           <button
             onClick={() => { setIsRegister(true); setError(''); }}
-            className={`flex-1 py-2 rounded-lg font-medium transition-colors ${
+            className={`flex-1 py-2 rounded-md font-semibold transition-all duration-300 ${
               isRegister 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-gray-200 text-gray-700'
+                ? 'bg-cyan-600 text-white shadow-cyan-400/40 hover:bg-cyan-500 hover:scale-105' 
+                : 'bg-white/10 text-cyan-200 border border-cyan-400 hover:bg-cyan-500/20'
             }`}
           >
             Register
           </button>
         </div>
-        <div className="space-y-4">
-          {/* Email Input */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSubmit()}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              placeholder="admin@company.com"
-              disabled={isLoading}
-            />
-          </div>
-          {/* Password Input */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSubmit()}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              placeholder="Min 6 characters"
-              disabled={isLoading}
-            />
-          </div>
-          {/* Error Message */}
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          <input
+            type="email"
+            placeholder="Enter your Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={isLoading}
+            className="px-5 py-3 rounded-md bg-white/10 text-white border border-cyan-400 placeholder:text-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition duration-300"
+          />
+          <input
+            type="password"
+            placeholder="Password (min 6 characters)"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            disabled={isLoading}
+            className="px-5 py-3 rounded-md bg-white/10 text-white border border-cyan-400 placeholder:text-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition duration-300"
+          />
+
+          {/* Error */}
           {error && (
-            <div className="text-red-500 text-sm flex items-center gap-2">
+            <div className="text-red-400 text-sm flex items-center gap-2">
               <AlertCircle size={16} />
               {error}
             </div>
           )}
-          {/* Submit Button */}
+
+          {/* Button */}
           <button
-            onClick={handleSubmit}
+            type="submit"
             disabled={isLoading}
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="text-white bg-cyan-600 hover:bg-cyan-500 font-semibold py-2 rounded-full transition-all duration-300 hover:shadow-cyan-300/40 hover:scale-105 mt-2 disabled:bg-gray-500 disabled:cursor-not-allowed"
           >
             {isLoading ? 'Please wait...' : (isRegister ? 'Create Account' : 'Sign In')}
           </button>
-        </div>
-        <div className="mt-4 text-sm text-gray-600 text-center space-y-1">
+        </form>
+
+        {/* Tip */}
+        <div className="mt-5 text-sm text-cyan-200 text-center space-y-1">
           <p className="font-semibold">💡 Tip:</p>
-          <p>Use <strong>admin@company.com</strong> for admin access</p>
+          <p>Use <strong>admin@me.com</strong> for admin access</p>
           <p>Any other email will be employee role</p>
         </div>
       </div>
