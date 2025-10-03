@@ -354,7 +354,7 @@ Contributions are what make the open-source community such an amazing place to l
 **Abhay Chauhan**
 
 - GitHub: [@git8abhay](https://github.com/git8abhay)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/abhay-chauhan-4b3001288/)
+- LinkedIn: [Abhay Chauhan](https://www.linkedin.com/in/abhay-chauhan-4b3001288/)
 - Email: abhay120529@gmail.com
 
 **Project Link**: [https://github.com/git8abhay/Dynamic-Employee-Task-Tracker](https://github.com/git8abhay/Dynamic-Employee-Task-Tracker)
