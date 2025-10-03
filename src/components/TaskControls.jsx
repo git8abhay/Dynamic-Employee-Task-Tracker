@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plus, Filter, SortAsc } from 'lucide-react';
+import { Plus, Filter, SortAsc, CheckSquare } from 'lucide-react';
 
 const TaskControls = ({ 
   filterStatus, 
@@ -7,7 +7,10 @@ const TaskControls = ({
   sortBy, 
   setSortBy, 
   isAdmin, 
-  onAddTaskClick 
+  onAddTaskClick,
+  // Bulk mode props
+  bulkMode = false,
+  onBulkModeToggle = null
 }) => {
   return (
     <div className="backdrop-blur-md bg-white/10 border border-cyan-400/30 rounded-2xl shadow-lg p-4 mb-6">
@@ -42,15 +45,32 @@ const TaskControls = ({
           </div>
         </div>
 
-        {/* Admin: Add Task */}
+        {/* Admin Actions */}
         {isAdmin && (
-          <button
-            onClick={onAddTaskClick}
-            className="flex items-center gap-2 px-5 py-2 rounded-full bg-cyan-600 hover:bg-cyan-500 font-semibold transition-all hover:scale-105 hover:shadow-cyan-300/40"
-          >
-            <Plus size={18} />
-            New Task
-          </button>
+          <div className="flex gap-2">
+            {/* Bulk Mode Toggle */}
+            {onBulkModeToggle && (
+              <button
+                onClick={onBulkModeToggle}
+                className={`flex items-center gap-2 px-5 py-2 rounded-full font-semibold transition-all hover:scale-105 ${
+                  bulkMode 
+                    ? 'bg-orange-400 hover:bg-orange-400 shadow-orange-300/40' 
+                    : 'bg-gray-600 hover:bg-gray-500 shadow-gray-300/40'
+                }`}
+              >
+                <CheckSquare size={18} />
+                {bulkMode ? 'Exit Bulk Mode' : 'Bulk Actions'}
+              </button>
+            )}
+            
+            <button
+              onClick={onAddTaskClick}
+              className="flex items-center gap-2 px-5 py-2 rounded-full bg-cyan-600 hover:bg-cyan-500 font-semibold transition-all hover:scale-105 hover:shadow-cyan-300/40"
+            >
+              <Plus size={18} />
+              New Task
+            </button>
+          </div>
         )}
       </div>
     </div>

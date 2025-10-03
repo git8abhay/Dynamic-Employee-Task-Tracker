@@ -8,7 +8,17 @@ import {
   Trash2,
 } from "lucide-react";
 
-const TaskCard = ({ task, onEdit, onDelete, onStatusChange, isAdmin }) => {
+const TaskCard = ({ 
+  task, 
+  onEdit, 
+  onDelete, 
+  onStatusChange, 
+  isAdmin,
+  // Bulk selection props
+  bulkMode = false,
+  isSelected = false,
+  onToggleSelect = null
+}) => {
   const statusConfig = {
     New: {
       icon: AlertCircle,
@@ -38,20 +48,35 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, isAdmin }) => {
   return (
     <div
       className={`rounded-2xl p-5 
-      bg-white/10 backdrop-blur-md border border-cyan-400/20 
+      bg-white/10 backdrop-blur-md border 
+      ${isSelected ? 'border-orange-300 ring-2 ring-orange-300/50 shadow-lg shadow-purple-500/30' : 'border-cyan-400/20'}
       shadow-md hover:shadow-cyan-400/40 transition-all hover:scale-[1.02] 
       duration-300 ease-in-out flex flex-col justify-between`}
     >
-      {/* Header with Title + Action Buttons */}
+      {/* Header with Checkbox (if bulk mode) + Title + Action Buttons */}
       <div className="flex justify-between items-start mb-4 gap-3">
-        <div className="flex-1">
-          <h3 className="text-lg font-semibold text-cyan-200 mb-1">
-            {task.title}
-          </h3>
-          <p className="text-sm text-cyan-100/80">{task.description}</p>
+        <div className="flex items-start gap-3 flex-1">
+          {/* Bulk selection checkbox */}
+          {bulkMode && onToggleSelect && (
+            <div className="pt-1">
+              <input
+                type="checkbox"
+                checked={isSelected}
+                onChange={() => onToggleSelect(task.id)}
+                className="w-5 h-5 rounded accent-orange-300 cursor-pointer"
+              />
+            </div>
+          )}
+          
+          <div className="flex-1">
+            <h3 className="text-lg font-semibold text-cyan-200 mb-1">
+              {task.title}
+            </h3>
+            <p className="text-sm text-cyan-100/80">{task.description}</p>
+          </div>
         </div>
 
-        {isAdmin && (
+        {isAdmin && !bulkMode && (
           <div className="flex gap-2 shrink-0">
             <button
               onClick={() => onEdit(task)}
@@ -105,24 +130,26 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, isAdmin }) => {
         </p>
       </div>
 
-      {/* Status Buttons */}
-      <div className="flex flex-wrap gap-2 mt-auto">
-        {["New", "Active", "Completed", "Failed"].map((status) => (
-          <button
-            key={status}
-            onClick={() => onStatusChange(task.id, { status })}
-            disabled={task.status === status}
-            className={`px-3 py-1 text-xs rounded-lg font-medium transition-all
-              ${
-                task.status === status
-                  ? "bg-cyan-600 text-white shadow-md cursor-default"
-                  : "bg-cyan-500/20 text-cyan-200 hover:bg-cyan-500/30"
-              }`}
-          >
-            {status}
-          </button>
-        ))}
-      </div>
+      {/* Status Buttons - Hide in bulk mode */}
+      {!bulkMode && (
+        <div className="flex flex-wrap gap-2 mt-auto">
+          {["New", "Active", "Completed", "Failed"].map((status) => (
+            <button
+              key={status}
+              onClick={() => onStatusChange(task.id, { status })}
+              disabled={task.status === status}
+              className={`px-3 py-1 text-xs rounded-lg font-medium transition-all
+                ${
+                  task.status === status
+                    ? "bg-cyan-600 text-white shadow-md cursor-default"
+                    : "bg-cyan-500/20 text-cyan-200 hover:bg-cyan-500/30"
+                }`}
+            >
+              {status}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
