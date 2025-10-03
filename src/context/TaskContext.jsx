@@ -10,7 +10,7 @@ export const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
   const [filterStatus, setFilterStatus] = useState('All');
   const [sortBy, setSortBy] = useState('date');
-  const [toasts, setToasts] = useState([]); // Toast state is managed here
+  const [toasts, setToasts] = useState([]); 
   const [loading, setLoading] = useState(true);
 
   // Toast logic (Memoized)
