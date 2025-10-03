@@ -40,11 +40,11 @@ const TaskFormModal = ({ task, onSave, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-40">
-      <div className="bg-white/20 backdrop-blur-xl border border-cyan-300/40 
+    <div className="fixed inset-0  flex items-center justify-center p-4 z-40">
+      <div className="bg-white/10 backdrop-blur-xl border border-cyan-300/90 
         rounded-2xl shadow-2xl p-6 w-full max-w-md max-h-screen overflow-y-auto">
         
-        <h2 className="text-2xl font-bold text-cyan-600 mb-6 text-center">
+        <h2 className="text-2xl font-bold text-cyan-400 mb-6 text-center">
           {task ? "Edit Task" : "Create New Task"}
         </h2>
 

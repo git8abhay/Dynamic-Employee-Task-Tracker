@@ -74,7 +74,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen w-full bg-black bg-gradient-to-br from-black via-gray-900 to-black text-white">
+    <div className="min-h-screen w-full bg-black bg-gradient-to-br from-black via-gray-900 to-black text-white relative">
       <ToastContainer />
 
       {/* Header */}
@@ -100,35 +100,37 @@ const Dashboard = () => {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 py-6 overflow-y-auto scrollbar-hide" style={{ maxHeight: 'calc(100vh - 120px)' }}>
-      {/* Statistics */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          <div className="backdrop-blur-md bg-white/10 border border-cyan-400/30 p-4 rounded-2xl shadow-lg text-center hover:shadow-cyan-400/40 transition-all">
-            <div className="text-sm text-cyan-200 mb-1">Total Tasks</div>
-            <div className="text-3xl font-bold text-cyan-400">{stats.total}</div>
-          </div>
-          <div className="backdrop-blur-md bg-white/10 border border-blue-400/30 p-4 rounded-2xl shadow-lg text-center hover:shadow-blue-400/40 transition-all">
-            <div className="text-sm text-blue-300 mb-1 flex items-center gap-1 justify-center">
-              <AlertCircle size={16} /> New
-            </div>
-            <div className="text-3xl font-bold text-blue-400">{stats.new}</div>
-          </div>
-          <div className="backdrop-blur-md bg-white/10 border border-yellow-400/30 p-4 rounded-2xl shadow-lg text-center hover:shadow-yellow-400/40 transition-all">
-            <div className="text-sm text-yellow-300 mb-1 flex items-center gap-1 justify-center">
-              <Clock size={16} /> Active
-            </div>
-            <div className="text-3xl font-bold text-yellow-400">
-              {stats.active}
-            </div>
-          </div>
-          <div className="backdrop-blur-md bg-white/10 border border-green-400/30 p-4 rounded-2xl shadow-lg text-center hover:shadow-green-400/40 transition-all">
-            <div className="text-sm text-green-300 mb-1 flex items-center gap-1 justify-center">
-              <CheckCircle size={16} /> Completed
-            </div>
-            <div className="text-3xl font-bold text-green-400">
-              {stats.completed}
-            </div>
-          </div>
+
+       {/* Statistics Section (Glassmorphism Circular Cards) */}
+        <div className="flex flex-wrap justify-center gap-6 mt-6 mb-6">
+        {[
+        { label: 'Total Tasks', count: stats.total, color: 'cyan', icon: null },
+        { label: 'New Tasks', count: stats.new, color: 'blue', icon: AlertCircle },
+        { label: 'Active Tasks', count: stats.active, color: 'yellow', icon: Clock },
+        { label: 'Completed Tasks', count: stats.completed, color: 'green', icon: CheckCircle },
+        ].map(({ label, count, color, icon: Icon }, idx) => {
+        const colorMap = {
+        cyan: 'border-cyan-400 shadow-cyan-400/50',
+        blue: 'border-blue-400 shadow-blue-400/50',
+        yellow: 'border-yellow-400 shadow-yellow-400/50',
+        green: 'border-green-400 shadow-green-400/50',
+        };
+
+        return (
+        <div
+        key={idx}
+        className={`flex flex-col items-center justify-center w-36 h-36 rounded-full bg-white/5 backdrop-blur-md border-4 ${colorMap[color]} transition-all duration-300 ${
+        label === 'New Tasks' ? 'animate-pulse' : ''
+        }`}
+        >
+        {Icon && <Icon size={28} className={`mb-2 text-${color}-400`} />}
+        <span className={`text-sm font-semibold text-${color}-300`}>{label}</span>
+        <span className="text-2xl font-bold text-cyan-100 mt-1">{count}</span>
         </div>
+        );
+        })}
+        </div>
+
 
         {/* Controls */}
         <div className="backdrop-blur-md bg-white/10 border border-cyan-400/30 rounded-2xl shadow-lg p-4 mb-6">
