@@ -19,18 +19,14 @@
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
+- [What's New](#-whats-new-in-v20)
 - [Features](#-features)
+- [Feature Highlights](#-feature-highlights)
+- [Use Cases](#-use-cases)
 - [Tech Stack](#-tech-stack)
 - [Architecture](#-architecture)
 - [Getting Started](#-getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Firebase Setup](#firebase-setup)
-  - [Environment Variables](#environment-variables)
 - [Usage](#-usage)
-  - [Admin Features](#admin-features)
-  - [Employee Features](#employee-features)
-- [Project Structure](#-project-structure)
 - [Task Lifecycle](#-task-lifecycle)
 - [Contributing](#-contributing)
 - [Contact](#-contact)
@@ -49,9 +45,58 @@
 - **Responsive Design**: Fully responsive UI using Tailwind CSS
 - **Secure Authentication**: Firebase Authentication with role management
 
+### ⚡ What's New in Additional Features
+
+This release brings powerful productivity features:
+
+1. **🔍 Smart Search** - Find any task instantly with real-time filtering across multiple fields
+2. **☑️ Bulk Actions** - Manage multiple tasks simultaneously with intuitive selection UI
+3. **📊 Enhanced Analytics** - Track performance with completion rates and priority metrics
+4. **🎨 Visual Improvements** - Color-coded badges, smooth animations, and better user feedback
+
 ---
 
 ## ✨ Features
+
+### 🆕 Additional Features
+
+#### 🔍 Smart Search System
+- **Real-time Search**: Instantly filter tasks as you type
+- **Multi-field Search**: Searches across title, description and priority
+- **Case-insensitive**: Find tasks regardless of capitalization
+- **Quick Clear**: One-click button to reset search
+- **Available on Both Dashboards**: Admin and Employee interfaces
+
+#### ☑️ Bulk Operations (Admin Dashboard)
+- **Bulk Selection Mode**: Toggle to enable multi-task selection
+- **Individual Checkboxes**: Select specific tasks with visual feedback
+- **Select All**: Quickly select/deselect all visible tasks
+- **Mass Status Updates**: Change status for multiple tasks simultaneously
+- **Visual Indicators**: 
+  - Real-time counter showing number of selected tasks
+  - Smooth animations for better UX
+
+#### 📊 Enhanced Employee Analytics
+- **Completion Rate**: Dynamic percentage showing task completion
+- **Priority Tracking**: Counter for high-priority pending tasks
+- **Performance Summary Card**: 
+  - Visual dashboard with key metrics
+  - Color-coded indicators
+  - Motivational award icons (🏆)
+  - Progress visualization
+
+#### 🎨 UI/UX Improvements
+- **Color-coded Badges**: 
+  - Priority levels (High: Red, Medium: Yellow, Low: Green)
+  - Status indicators with distinct colors
+- **Smart Empty States**: Contextual messages when no tasks found
+- **Enhanced Hover Effects**: Smooth transitions on interactive elements
+- **Responsive Grids**: Adaptive layouts for all screen sizes
+- **Better Visual Hierarchy**: Improved readability and information architecture
+
+---
+
+### Core Features
 
 ### 🔐 Authentication & Authorization
 - **Firebase Authentication** integration for secure login/logout
@@ -67,21 +112,35 @@
   - ⚡ **Active** - Tasks in progress
   - ✅ **Completed** - Successfully finished tasks
   - ❌ **Failed** - Tasks that couldn't be completed
-- **Task prioritization** system
+- **Task prioritization** system (High, Medium, Low)
 - **Form validation** for data integrity
 
 ### 🎯 Admin Dashboard
 - **Create and assign tasks** to employees
 - **Monitor all tasks** across the organization
+- **🔍 Advanced Search**: Search across title, description and priority
+- **☑️ Bulk Actions**: 
+  - Toggle bulk selection mode
+  - Select/deselect all visible tasks
+  - Mass status updates (New, Active, Completed)
+  - Visual selection feedback with purple borders
+  - Selected task counter
 - **User management** capabilities
+- **Analytics and insights** dashboard
 - **Task filtering and sorting** options
 
 ### 👤 Employee Dashboard
 - **View assigned tasks** with detailed information
 - **Update task status** (Active, Completed, Failed)
+- **🔍 Quick Search**: Find tasks by title, description, or priority
+- **📊 Enhanced Statistics**:
+  - Completion rate percentage
+  - High priority pending tasks count
+  - Performance summary card with visual indicators
+  - Motivational award icons
 - **Personal task statistics** and progress tracking
-- **Task filtering** by date & priority
-- **Chronological task sorting**
+- **Task filtering** by status (New, Active, Completed, Failed)
+- **Chronological task sorting** by date and priority
 
 ### 🔔 Real-Time Features
 - **Live task updates** without page refresh
@@ -89,17 +148,84 @@
 - **Optimistic UI updates** for better UX
 - **Real-time database listeners** for instant sync
 
+### 🔍 Advanced Features
+- **🔍 Smart Search System**:
+  - Real-time search across multiple fields (title, description, assignee, priority)
+  - Case-insensitive matching for better results
+  - Clear button for quick reset
+  - Available in both Admin and Employee dashboards
+- **☑️ Bulk Operations (Admin)**:
+  - Toggle bulk selection mode
+  - Checkbox on each task card
+  - Select/Deselect all functionality
+  - Mass status updates for multiple tasks
+  - Visual feedback with purple borders and glow effects
+  - Selected task counter display
+- **📊 Performance Analytics (Employee)**:
+  - Completion rate percentage calculation
+  - High priority pending task counter
+  - Performance summary card with visual dashboard
+  - Motivational award icons for achievements
+- **Task filtering** by status (New, Active, Completed, Failed)
+- **Sorting capabilities** by date and priority
+- **Context API** for efficient state management
+
 ### 🎨 User Interface
 - **Responsive design** for all screen sizes
 - **Modern UI components** with Tailwind CSS
 - **Intuitive navigation** with React Router
+- **Enhanced Visual Feedback**:
+  - Color-coded priority badges (High, Medium, Low)
+  - Status badges with distinct colors
+  - Smooth hover effects and transitions
+- **Contextual Empty States**:
+  - Custom messages when no tasks are found
+  - Search-specific empty state messages
+  - Helpful guidance for users
 - **Loading states** and error handling
 - **Smooth animations** and transitions
+- **Responsive grid layouts** that adapt to screen sizes
 
-### 🔍 Advanced Features
-- **Task filtering** by status (New, Active, Completed, Failed)
-- **Sorting capabilities** by date and priority
-- **Context API** for efficient state management
+---
+
+## 🏆 Feature Highlights
+
+| Feature | Admin | Employee | Description |
+|---------|-------|----------|-------------|
+| 🔍 Smart Search | ✅ | ✅ | Real-time search across title, description, assignee, and priority |
+| ☑️ Bulk Actions | ✅ | ❌ | Select and update multiple tasks simultaneously |
+| 📊 Performance Analytics | ✅ | ✅ | Track completion rates and high-priority tasks |
+| ➕ Create Tasks | ✅ | ❌ | Create and assign new tasks to team members |
+| ✏️ Update Status | ✅ | ✅ | Change task status (New/Active/Completed/Failed) |
+| 🗑️ Delete Tasks | ✅ | ❌ | Remove tasks from the system |
+| 📈 Statistics Dashboard | ✅ | ✅ | View task distribution and progress metrics |
+| 🎨 Color-coded Priorities | ✅ | ✅ | Visual indicators for High/Medium/Low priority |
+| 🔔 Toast Notifications | ✅ | ✅ | Real-time alerts for task changes |
+| 📱 Responsive Design | ✅ | ✅ | Optimized for desktop, tablet, and mobile |
+| 🔄 Real-time Sync | ✅ | ✅ | Firebase Firestore live updates |
+| 🏅 Award System | ❌ | ✅ | Motivational icons for achievements |
+
+---
+
+## 🎯 Use Cases
+
+### For Project Managers (Admin)
+- **Bulk Task Assignment**: Assign similar tasks to multiple employees at once
+- **Quick Search**: Find specific tasks or employees instantly
+- **Progress Monitoring**: Track team performance and task completion
+- **Priority Management**: Identify and manage high-priority tasks
+
+### For Team Members (Employee)
+- **Personal Dashboard**: See all assigned tasks in one place
+- **Performance Tracking**: Monitor your completion rate and achievements
+- **Priority Focus**: Easily identify urgent tasks that need attention
+- **Quick Updates**: Change task status with simple clicks
+
+### For Teams
+- **Remote Collaboration**: Perfect for distributed teams
+- **Real-time Updates**: Everyone sees changes instantly
+- **Accountability**: Clear task ownership and status tracking
+- **Productivity Insights**: Data-driven performance metrics
 
 ---
 
@@ -122,17 +248,22 @@
 
 ### Additional Libraries
 - **React Toastify** - Toast notifications
-- **React Icons** - Lucide library
+- **React Icons (Lucide)** - Modern icon library
+
+### Development Tools
+- **ESLint** - Code linting and quality
+- **PostCSS** - CSS transformations
+- **Autoprefixer** - CSS vendor prefixing
 
 ---
-
-## 🏗 Architecture
 
 ### Data Flow
 1. **Authentication**: User logs in → Firebase Auth → Role detection → Route to appropriate dashboard
 2. **Task Creation**: Admin creates task → Firestore → Real-time listener → Employee dashboard updates
 3. **Task Update**: Employee updates status → Firestore → Real-time listener → Admin dashboard updates
-4. **State Management**: Context API manages global state across components
+4. **Search**: User types → Filter tasks in real-time → Update UI instantly
+5. **Bulk Actions**: Admin selects tasks → Updates multiple tasks → Firestore batch operation → UI refresh
+6. **State Management**: Context API manages global state across components
 
 ---
 
@@ -245,7 +376,7 @@ Ensure you have the following installed on your system:
 
 1. **Login as Admin**
    - Use admin credentials to access the admin dashboard
-   - Default admin email: `admin@me.com` password: `123456` (set up in Firebase)
+   - Default admin email: `admin@me.com` password: `123456`
 
 2. **Create Tasks**
    - Click "Create Task" button
@@ -253,14 +384,27 @@ Ensure you have the following installed on your system:
      - Task title
      - Description
      - Assign to employee
-     - Set priority
+     - Set priority (High, Medium, Low)
      - Due date
    - Submit to create
 
 3. **Monitor Tasks**
    - View all tasks in the organization
-   - Filter by New, Active, Completed or Failed
-   - Track task completion state
+   - **Use Search Bar**: Type to find tasks by title, description, assignee, or priority
+   - **Enable Bulk Mode**: Click "Bulk Actions" button to select multiple tasks
+     - Check individual tasks or use "Select All"
+     - Choose bulk status update from dropdown
+     - See selected count in real-time
+   - Filter by status (New, Active, Completed, Failed)
+   - Track task completion rates
+
+4. **Bulk Actions Workflow**
+   - Toggle bulk selection mode
+   - Select tasks using checkboxes (purple border indicates selection)
+   - Use "Select All" for all visible tasks
+   - Choose action: Update status to New, Active, or Completed
+   - Confirm bulk update
+   - Toast notification confirms success
 
 ### Employee Features
 
@@ -270,8 +414,13 @@ Ensure you have the following installed on your system:
 
 2. **View Tasks**
    - See all assigned tasks
+   - **Use Search**: Quickly find tasks by title, description, or priority
    - View task details and priority
    - Check due dates
+   - **Performance Dashboard**: View your statistics
+     - Completion rate percentage
+     - High priority pending tasks
+     - Achievement awards (🏆)
 
 3. **Update Task Status**
    - Click on a task card
@@ -280,6 +429,13 @@ Ensure you have the following installed on your system:
      - **Complete Task** → Changes to Completed
      - **Mark Failed** → Changes to Failed
 
+4. **Track Your Performance**
+   - View completion rate in performance summary card
+   - Monitor high-priority pending tasks
+   - See total tasks vs completed tasks
+   - Get motivated by award icons for achievements
+
+---
 
 ## 🔄 Task Lifecycle
 
@@ -308,6 +464,8 @@ Tasks in the application follow a defined lifecycle:
 - **⚡ Active**: Employee has accepted and is currently working on the task
 - **✅ Completed**: Task has been successfully finished
 - **❌ Failed**: Task could not be completed
+
+---
 
 ## 🤝 Contributing
 
@@ -348,6 +506,8 @@ Contributions are what make the open-source community such an amazing place to l
 - Update documentation for new features
 - Test your changes thoroughly
 - Ensure all existing tests pass
+- 
+---
 
 ## 👨‍💻 Contact
 
@@ -370,14 +530,18 @@ Contributions are what make the open-source community such an amazing place to l
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Vite](https://vitejs.dev/)
 - [React Router](https://reactrouter.com/)
-- [Lucide](https://lucide.dev/icons/) for icons
+- [Lucide Icons](https://lucide.dev/icons/)
+- [React Toastify](https://fkhadra.github.io/react-toastify/)
 - [Vercel](https://vercel.com/) for deployment
 
+---
 
 <div align="center">
 
 **⭐ If you found this project helpful, please give it a star! ⭐**
 
 Made with ❤️ by [Abhay Chauhan](https://github.com/git8abhay)
+
+**DynamicEMS** - Now with Search, Bulk Actions, and Enhanced Analytics!
 
 </div>
